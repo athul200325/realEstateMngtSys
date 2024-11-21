@@ -10,35 +10,54 @@ const Home = () => {
 <Header insideHome={true}/>
   
   {/* Top Section */}
-  <div className='relative flex h-5/6 flex-col gap-6 p-40 py-56 px-3 max-w-full mx-auto bg-cover bg-center'
-     style={{ backgroundImage: 'url("https://images.pexels.com/photos/1797393/pexels-photo-1797393.jpeg")' }}>
-  
-  {/* Dark Overlay */}
-  <div className='absolute inset-0 bg-black opacity-25'></div>
-
-  {/* Content */}
-  <div className='relative ms-14 z-10'>
-    <h1 className='text-white mb-5 font-bold text-3xl lg:text-6xl'>
-    Find your <span className='text-slate-300'>dream </span>with
-    
-    ease
-      <br />
-      where <span className='text-slate-300'>comfort</span> meets convenience
-    </h1>
-    <div className='text-gray-200 font-medium mb-4 text-base sm:text-lg'>
-      Realtor is the best place to find your next perfect place to
-      live.
-      <br />
-      We have a wide range of properties for you to choose from.
+  <div
+      className="relative flex flex-col items-center justify-center h-[70vh] text-center bg-cover bg-center"
+      style={{ backgroundImage: 'url("https://images.pexels.com/photos/1797393/pexels-photo-1797393.jpeg")' }}
+    >
+      <div className="absolute inset-0 bg-black opacity-40"></div>
+      <div className="relative z-10 max-w-3xl text-white p-4">
+        <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+          Find Your <span className="text-indigo-300">Dream Home</span> with Ease
+        </h1>
+        <p className="mb-6 text-lg sm:text-xl text-slate-200">
+          Discover properties that perfectly blend <span className="text-indigo-300">comfort</span> and <span className="text-indigo-300">convenience</span>.
+        </p>
+        <Link
+          to="/search"
+          className="inline-flex items-center bg-indigo-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-indigo-700"
+        >
+          Let's Get Started <FaArrowRight className="ml-2" />
+        </Link>
+      </div>
     </div>
-    <Link
-        to={'/search'}
-        className='flex w-44 text-xs p-3 rounded-xl sm:text-base bg-sky-600 text-white font-bold hover:bg-sky-700'>
-        Let's get started <FaArrowRight className='ms-1 mt-1 text-lg' />
-    </Link>
 
-  </div>
-</div>
+    <div className="py-16 bg-gray-50">
+      <div className="max-w-6xl mx-auto text-center">
+        <h2 className="text-3xl font-semibold text-slate-700 mb-8">Explore Our Services</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div className="p-6 bg-white shadow rounded-lg">
+            <h3 className="text-xl font-bold text-indigo-600 mb-4">Buy a Home</h3>
+            <p className="text-slate-500">
+              Browse listings to find your dream property. Our extensive database includes options for every budget and preference.
+            </p>
+          </div>
+          <div className="p-6 bg-white shadow rounded-lg">
+            <h3 className="text-xl font-bold text-indigo-600 mb-4">Sell a Home</h3>
+            <p className="text-slate-500">
+              List your property with us for maximum exposure and reach. Our platform makes selling easy and efficient.
+            </p>
+          </div>
+          <div className="p-6 bg-white shadow rounded-lg">
+            <h3 className="text-xl font-bold text-indigo-600 mb-4">Rent a Place</h3>
+            <p className="text-slate-500">
+              Looking for a temporary residence? Explore our rental listings to find the perfect place for your needs.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
 
 
   {/* Swiper Section (Mockup) */}
@@ -56,63 +75,82 @@ const Home = () => {
   </div>
 
   {/* Listing Results for Offer, Sale, and Rent */}
-  <div className='max-w-6xl mx-auto p-3 flex flex-col gap-8 my-10'>
+  <div className='max-w-6xl justify-center mx-auto items-center p-3 flex flex-col gap-8 my-10'>
     {/* Recent Offers */}
-    <div>
-      <div className='my-3'>
-        <h2 className='text-2xl font-semibold text-slate-600'>Recent offers</h2>
-        <Link className='text-sm text-blue-800 hover:underline' to={'/search?offer=true'}>
-          Show more offers
-        </Link>
+    <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-semibold text-slate-700">Recent Offers</h2>
+            <Link
+              to="/search?offer=true"
+              className="text-sm px-4 py-2 bg-indigo-600 text-white font-medium rounded-md transition-colors duration-300 hover:bg-indigo-700"
+            >
+              Show more offers
+            </Link>
+        </div>
+        <div className="flex flex-wrap gap-4">
+            {/* Placeholder for listing items */}
+            <div className="p-2">
+              <ListingItem />
+            </div>
+            <div className="p-2">
+              <ListingItem />
+            </div>
+            <div className="p-2">
+              <ListingItem />
+            </div>
+        </div>
       </div>
-      <div className='flex flex-wrap gap-4'>
-        {/* Placeholder for listing items */}
-        <div className='p-2'>
-          <ListingItem/>        </div>
-        <div className='p-2'>
-          <ListingItem/>        </div>
-        <div className='p-2'>
-          <ListingItem/>        </div>
-      </div>
-    </div>
+
 
     {/* Recent Places for Rent */}
-    <div>
-      <div className='my-3'>
-        <h2 className='text-2xl font-semibold text-slate-600'>Recent places for rent</h2>
-        <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=rent'}>
-          Show more places for rent
-        </Link>
+    <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-semibold text-slate-700">Recent Offers</h2>
+            <Link
+              to="/search?offer=true"
+              className="text-sm px-4 py-2 bg-indigo-600 text-white font-medium rounded-md transition-colors duration-300 hover:bg-indigo-700"
+            >
+              Show more offers
+            </Link>
+        </div>
+        <div className="flex flex-wrap gap-4">
+            {/* Placeholder for listing items */}
+            <div className="p-2">
+              <ListingItem />
+            </div>
+            <div className="p-2">
+              <ListingItem />
+            </div>
+            <div className="p-2">
+              <ListingItem />
+            </div>
+        </div>
       </div>
-      <div className='flex flex-wrap gap-4'>
-        {/* Placeholder for listing items */}
-        <div className='p-2'>
-          <ListingItem/>        </div>
-        <div className='p-2'>
-          <ListingItem/>        </div>
-        <div className='p-2'>
-          <ListingItem/>        </div>
-      </div>
-    </div>
 
     {/* Recent Places for Sale */}
-    <div>
-      <div className='my-3'>
-        <h2 className='text-2xl font-semibold text-slate-600'>Recent places for sale</h2>
-        <Link className='text-sm text-blue-800 hover:underline' to={'/search?type=sale'}>
-          Show more places for sale
-        </Link>
+    <div className="bg-white p-6 rounded-lg shadow-sm">
+        <div className="flex justify-between items-center mb-6">
+            <h2 className="text-2xl font-semibold text-slate-700">Recent Offers</h2>
+            <Link
+              to="/search?offer=true"
+              className="text-sm px-4 py-2 bg-indigo-600 text-white font-medium rounded-md transition-colors duration-300 hover:bg-indigo-700"
+            >
+              Show more offers
+            </Link>
+        </div>
+        <div className="flex flex-wrap gap-4">
+            {/* Placeholder for listing items */}
+            <div className="p-2">
+              <ListingItem />
+            </div>
+            <div className="p-2">
+              <ListingItem />
+            </div>
+            <div className="p-2">
+              <ListingItem />
+            </div>
+        </div>
       </div>
-      <div className='flex flex-wrap gap-4'>
-        {/* Placeholder for listing items */}
-        <div className='p-2'>
-          <ListingItem/>        </div>
-        <div className='p-2'>
-          <ListingItem/>        </div>
-        <div className='p-2'>
-          <ListingItem/>        </div>
-      </div>
-    </div>
   </div>
 </>
   )

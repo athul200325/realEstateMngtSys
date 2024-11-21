@@ -9,91 +9,94 @@ const Profile = () => {
 
     <>
     <Header insideHome={true} bgHeader={true}/>
-      <div className="p-3 max-w-lg mx-auto">
-        <h1 className="text-3xl font-semibold text-center my-7">Profile</h1>
-        <form className="flex flex-col gap-4">
-          <input
-            type="file"
-            hidden
-            accept="image/*"
-          />
+   <div className="min-h-screen bg-gradient-to-b pt-20 from-gray-100 to-gray-100 flex items-center justify-center px-6 ">
+  <div className="w-full max-w-2xl bg-white rounded-xl shadow-lg  overflow-hidden">
+    {/* Profile Header */}
+    <div className="relative bg-gradient-to-r from-indigo-500 to-indigo-700 h-32">
+      <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2">
+        <input type="file" id="uploadImage" hidden accept="image/*" />
+        <label htmlFor="uploadImage" className="cursor-pointer">
           <img
-            src="https://itherapy.com/wp-content/uploads/itherapy_profile-placeholders_m13.png"  
+            src="https://itherapy.com/wp-content/uploads/itherapy_profile-placeholders_m13.png"
             alt="profile"
-            className="rounded-full h-32 w-32 object-cover cursor-pointer self-center mt-2"
+            className="h-32 w-32 rounded-full object-cover border-4 border-white shadow-md hover:shadow-lg transition duration-300"
           />
-          
-  
-          <input
-            type="text"
-            placeholder="Username"
-            className="border p-3 rounded-lg"
-          />
-  
-          <input
-            type="email"
-            placeholder="Email"
-            className="border p-3 rounded-lg"
-          />
-  
-          <input
-            type="password"
-            placeholder="Password"
-            className="border p-3 rounded-lg"
-          />
-  
-          <div className="flex justify-center gap-4">
-              <button className="bg-blue-800 w-40 font-semibold text-white rounded-lg p-3 hover:opacity-95">
-                Update
-              </button>
+        </label>
+      </div>
+    </div>
 
-              <Link
-                className="bg-green-700 w-40 font-semibold text-white p-3 rounded-lg text-center hover:opacity-95"
-                to="/create-listing"
-              >
-                Create Listing
-              </Link>
-            </div>
-        </form>
-  
-        <div className="flex justify-between mt-5">
-          <span className="text-red-700 font-semibold cursor-pointer inline-flex items-center"><FaTrash className='mr-2'/> Account</span>
-          <span className="text-red-700 font-semibold cursor-pointer inline-flex items-center">Sign Out<FaSignOutAlt className='ms-2'/></span>
-        </div>
-  
-        <button className='w-full mx-auto mt-10 font-semibold text-sky-700 justify-center '>
-          <h1>Show Listings </h1>
-          <RiArrowDownWideFill className='text-3xl mx-auto '/>
-          
+    {/* User Information Section */}
+    <div className="mt-16 p-6 text-center">
+      <h1 className="text-2xl font-bold text-gray-800">John Doe</h1>
+      <p className="text-gray-500 text-sm">johndoe@example.com</p>
+    </div>
+
+    {/* Editable Profile Form */}
+    <form className="px-6 pt-4 pb-8">
+      <div className="flex flex-col gap-5">
+        <input
+          type="text"
+          placeholder="Update Username"
+          className="border border-gray-300 rounded-lg p-3 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        />
+        <input
+          type="email"
+          placeholder="Update Email"
+          className="border border-gray-300 rounded-lg p-3 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        />
+        <input
+          type="password"
+          placeholder="New Password"
+          className="border border-gray-300 rounded-lg p-3 shadow-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+        />
+      </div>
+
+      {/* Action Buttons */}
+      <div className="mt-6 flex justify-center gap-4">
+        <button className="bg-indigo-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-indigo-700 shadow-md transition duration-300">
+          Save Changes
         </button>
-        
-  
-        <div className="flex flex-col gap-4">
-          <h1 className="text-center mt-7 text-2xl font-semibold">Your Listings</h1>
-          <div className="border rounded-lg p-3 flex justify-between items-center gap-4">
-            <Link to="/listing/1">
-              <img
-                src="https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"  
-                alt="listing cover"
-                className="h-16 w-16 object-contain"
-              />
-            </Link>
-            <Link
-              className="text-slate-700 font-semibold hover:underline truncate flex-1"
-              to='/listing'
-            >
-              <p>Listing Name</p>
-            </Link>
-  
-            <div className="flex items-center">
-             <Link to="/update-listing/1">
-                <button className="text-green-700 text-2xl"><FaEdit/></button>
-              </Link>
-              <button className="text-red-700 text-xl mx-5 "><FaTrash/></button>
-            </div>
+        <button className="bg-red-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-red-700 shadow-md transition duration-300">
+          Delete Account
+        </button>
+      </div>
+    </form>
+
+    {/* Listings Section */}
+    <div className="px-6 pb-6">
+      <h2 className="text-xl font-semibold text-gray-800 mb-4">Your Listings</h2>
+      <div className="space-y-4">
+        {/* Listing Item */}
+        <div className="bg-gray-100 p-4 rounded-lg shadow hover:shadow-lg transition duration-300 flex justify-between items-center">
+          <img
+            src="https://images.pexels.com/photos/259588/pexels-photo-259588.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+            alt="listing cover"
+            className="h-16 w-16 rounded-md object-cover"
+          />
+          <div className="flex-1 ml-4">
+            <h3 className="text-gray-800 font-semibold truncate">Luxury Apartment</h3>
+            <p className="text-gray-500 text-sm">New York, NY</p>
+          </div>
+          <div className="flex gap-3">
+            <button className="text-green-600 hover:text-green-700">
+              <FaEdit className="text-xl" />
+            </button>
+            <button className="text-red-600 hover:text-red-700">
+              <FaTrash className="text-xl" />
+            </button>
           </div>
         </div>
+
+        {/* Add More Listings Button */}
+        <button className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 shadow-md transition duration-300">
+          <Link to={'/create-listing'}>Add New Listing</Link>
+        </button>
       </div>
+    </div>
+  </div>
+</div>
+
+
     </>
       )
 }
