@@ -43,10 +43,11 @@ const SignUp = () => {
         setError(data.message || 'Signup failed. Please try again.');
         return;
       }
+      
+      // Handle success (e.g., redirect)
       setLoading(true);
       setError(null); // Clear previous error
       navigate('/sign-in')
-      // Handle success (e.g., redirect)
     } catch (error) {
       setError(error.message || 'An unexpected error occurred. Please try again.');
     } finally {
