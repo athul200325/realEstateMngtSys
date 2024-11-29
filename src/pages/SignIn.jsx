@@ -23,7 +23,6 @@ const SignIn = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validation
     if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
       setError('Please enter a valid email address.');
       return;
@@ -35,7 +34,7 @@ const SignIn = () => {
     }
 
     setLoading(true);
-    setError(null); // Clear previous error
+    setError(null); 
 
     try {
       const res = await fetch('/realestate/auth/signin', {
@@ -50,7 +49,7 @@ const SignIn = () => {
         return;
       }
 
-      // Handle success (e.g., redirect)
+      
       navigate('/');
     } catch (error) {
       setError(error.message || 'An unexpected error occurred. Please try again.');
@@ -64,7 +63,6 @@ const SignIn = () => {
       <Header />
       <section className="h-screen flex items-center justify-center bg-gray-50">
         <div className="w-4/5 mx-10 h-full px-6 py-24 flex flex-col md:flex-row items-center justify-center">
-          {/* Left column with image */}
           <div className="mb-12 md:mb-0 md:w-7/12 lg:w-5/12">
             <img
               src={login}
@@ -73,14 +71,12 @@ const SignIn = () => {
             />
           </div>
 
-          {/* Right column with form */}
           <div className="md:w-6/12 lg:w-5/12 lg:ml-12">
             <h1 className="text-4xl text-center font-bold mb-8 text-slate-700">
               <span className="text-indigo-700">Start</span> Your Hunt
             </h1>
 
             <form onSubmit={handleSubmit}>
-              {/* Email input */}
               <input
                 id="email"
                 onChange={handleChange}
@@ -89,7 +85,6 @@ const SignIn = () => {
                 className="mb-4 w-full px-4 py-3 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
 
-              {/* Password input */}
               <input
                 id="password"
                 onChange={handleChange}
@@ -98,7 +93,6 @@ const SignIn = () => {
                 className="mb-4 w-full px-4 py-3 text-lg border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
 
-              {/* Remember me and Sign up */}
               <div className="mb-6 flex items-center justify-between">
                 <div className="flex items-center">
                   <input
@@ -122,7 +116,6 @@ const SignIn = () => {
                 </span>
               </div>
 
-              {/* Sign in button */}
               <button
                 disabled={loading}
                 className={`w-full py-3 rounded-lg text-lg font-semibold shadow-md transition duration-200 ${
@@ -140,14 +133,12 @@ const SignIn = () => {
                 </p>
               )}
 
-              {/* Divider */}
               <div className="flex items-center my-6">
                 <hr className="flex-1 border-gray-300" />
                 <p className="px-4 text-gray-500 font-semibold">OR</p>
                 <hr className="flex-1 border-gray-300" />
               </div>
 
-              {/* Social login with Google */}
               <button
                 className="w-full bg-blue-600 flex items-center justify-center py-3 rounded-lg text-white text-lg font-semibold shadow-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
               >
