@@ -3,6 +3,8 @@ import { FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import login from '../assets/login.jpg';
+import { useDispatch, useSelector } from 'react-redux';
+import { signInStart,signInSuccess,signInFailure } from '../redux/user/userSlice.js';
 
 const SignIn = () => {
   const [formData, setFormDta] = useState({
@@ -10,9 +12,9 @@ const SignIn = () => {
     password: '',
   });
   const navigate = useNavigate();
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
+  const {loading,error}=useSelector((state) => state.user);
 
+  const dispatch=useDispatch()
   const handleChange = (e) => {
     setFormDta({
       ...formData,
@@ -24,19 +26,19 @@ const SignIn = () => {
     e.preventDefault();
 
     if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
-      setError('Please enter a valid email address.');
+      dispatch(signInFailure('Please enter a valid email address.'))
       return;
     }
 
     if (!formData.password || formData.password.length < 6) {
-      setError('Password must be at least 6 characters long.');
+      dispatch(signInFailure('Password must be at least 6 characters long.'))
       return;
     }
 
-    setLoading(true);
-    setError(null); 
+    
 
     try {
+      dispatch(signInStart())
       const res = await fetch('/realestate/auth/signin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -45,16 +47,14 @@ const SignIn = () => {
 
       const data = await res.json();
       if (data.success === false) {
-        setError(data.message || 'Signin failed. Please try again.');
+        dispatch(signInFailure(data.message || 'Signin failed. Please try again.'))
         return;
       }
 
-      
+      dispatch(signInSuccess(data))
       navigate('/');
     } catch (error) {
-      setError(error.message || 'An unexpected error occurred. Please try again.');
-    } finally {
-      setLoading(false);
+      dispatch(signInFailure(error.message || 'An unexpected error occurred. Please try again.'))
     }
   };
 
