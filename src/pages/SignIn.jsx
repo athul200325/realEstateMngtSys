@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
-import { FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import login from '../assets/login.jpg';
 import { useDispatch, useSelector } from 'react-redux';
-import { signInStart,signInSuccess,signInFailure } from '../redux/user/userSlice.js';
+import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice.js';
+import OAuth from '../components/OAuth.jsx';
 
 const SignIn = () => {
-  const [formData, setFormDta] = useState({
+  const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
   const navigate = useNavigate();
-  const {loading,error}=useSelector((state) => state.user);
+  const { loading, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
-  const dispatch=useDispatch()
   const handleChange = (e) => {
-    setFormDta({
+    setFormData({
       ...formData,
       [e.target.id]: e.target.value,
     });
@@ -26,19 +26,17 @@ const SignIn = () => {
     e.preventDefault();
 
     if (!formData.email || !/\S+@\S+\.\S+/.test(formData.email)) {
-      dispatch(signInFailure('Please enter a valid email address.'))
+      dispatch(signInFailure('Please enter a valid email address.'));
       return;
     }
 
     if (!formData.password || formData.password.length < 6) {
-      dispatch(signInFailure('Password must be at least 6 characters long.'))
+      dispatch(signInFailure('Password must be at least 6 characters long.'));
       return;
     }
 
-    
-
     try {
-      dispatch(signInStart())
+      dispatch(signInStart());
       const res = await fetch('/realestate/auth/signin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -47,14 +45,18 @@ const SignIn = () => {
 
       const data = await res.json();
       if (data.success === false) {
-        dispatch(signInFailure(data.message || 'Signin failed. Please try again.'))
+        dispatch(signInFailure(data.message || 'Signin failed. Please try again.'));
         return;
       }
 
-      dispatch(signInSuccess(data))
+      // Store token in localStorage
+      localStorage.setItem('access_token', data.access_token); // Store token
+      localStorage.setItem('user', JSON.stringify(data)); // Optionally store user data
+
+      dispatch(signInSuccess(data));
       navigate('/');
     } catch (error) {
-      dispatch(signInFailure(error.message || 'An unexpected error occurred. Please try again.'))
+      dispatch(signInFailure(error.message || 'An unexpected error occurred. Please try again.'));
     }
   };
 
@@ -139,12 +141,7 @@ const SignIn = () => {
                 <hr className="flex-1 border-gray-300" />
               </div>
 
-              <button
-                className="w-full bg-blue-600 flex items-center justify-center py-3 rounded-lg text-white text-lg font-semibold shadow-md hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-200"
-              >
-                <FaGoogle className="mr-3" />
-                Continue with Google
-              </button>
+              <OAuth />
             </form>
           </div>
         </div>

@@ -1,117 +1,186 @@
-  import React from 'react'
-  import { FaFacebook, FaGithub, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa'
-  import logo from '../assets/logo.png'
-import { Link } from 'react-router-dom'
-import { FaLinkedin } from 'react-icons/fa6'
+import React from 'react';
+import { FaFacebook, FaGithub, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
+import logo from '../assets/logo.png';
+import { Link } from 'react-router-dom';
 
-  const Footer = () => {
-    
-    return (
-      <footer class="w-full py-">
-          <div class="mx-auto max-w-screen-2xl px-20 sm:px-6 lg:px-8">
-              <div
-                  class="flex items-center pt-5 justify-center lg:justify-between flex-col lg:flex-row pb-5 gap-7 lg:gap-0 border-b border-gray-200">
-                  <div class="flex shrink-0">
+const Footer = () => {
+  return (
+    <footer className="w-full py-8 bg-gray-50">
+      <div className="mx-auto max-w-screen-2xl px-6 sm:px-8 lg:px-16">
+        {/* Top Section */}
+        <div className="flex flex-col lg:flex-row items-center justify-between pb-6 border-b border-gray-200">
+          <div className="flex items-center">
             <Link to={'/'}>
-                <h1 className='font-bold flex  text-sm sm:text-xl'>
-                <img width={'25'} src={logo} alt="" />
-                    <span className='text-slate-800'>EALTOR</span> 
-                </h1>
+              <h1 className="font-bold text-xl sm:text-2xl flex items-center text-slate-800">
+                <img width={'25'} src={logo} alt="Logo" />
+                <span className="ml-2">EALTOR</span>
+              </h1>
             </Link>
-            </div>
-                  <a href="javascript:;"
-                      class="flex items-center gap-2 py-2.5 px-7 rounded-full bg-gray-900 shadow-md text-white font-semibold hover:bg-gray-800">Contac
-                      us <svg width="17" height="12" viewBox="0 0 17 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path
-                              d="M1.5 6L14.8333 6M10.6667 11L15.0774 6.58926C15.3552 6.31148 15.4941 6.17259 15.4941 6C15.4941 5.82741 15.3552 5.68852 15.0774 5.41074L10.6667 1"
-                              stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-                      </svg>
-                  </a>
-              </div>
-              <div class="flex justify-between flex-col py-1 min-[500px]:py-8 gap-8 min-[500px]:gap-16 lg:gap-0 lg:flex-row">
-                  <div
-                      class="flex flex-col items-center max-lg:justify-center min-[500px]:items-start min-[500px]:flex-row gap-8 sm:gap-12 xl:gap-24">
-                      <div class="block">
-                          <h4
-                              class="text-lg text-gray-900 font-medium mb-1 min-[500px]:mb-7 text-center min-[500px]:text-left">
-                              Pagedone</h4>
-                          <ul class="grid gap-4 min-[500px]:gap-6 text-center min-[500px]:text-left">
-                              <li><a href="javascript:;" class="text-gray-600 hover:text-gray-900">Home</a></li>
-                              <li><a href="javascript:;" class="text-gray-600 hover:text-gray-900">About</a></li>
-                              <li><a href="javascript:;" class="text-gray-600 hover:text-gray-900">Pricing</a></li>
-                              <li><a href="javascript:;" class="text-gray-600 hover:text-gray-900">Pro Version</a></li>
-                          </ul>
-                      </div>
-                      <div class="block">
-                          <h4
-                              class="text-lg text-gray-900 font-medium mb-4 min-[500px]:mb-7 text-center min-[500px]:text-left">
-                              Products</h4>
-                          <ul class="grid gap-4 min-[500px]:gap-6 text-center min-[500px]:text-left">
-                              <li><a href="javascript:;" class="text-gray-600 hover:text-gray-900">Figma UI System</a>
-                              </li>
-                              <li><a href="javascript:;" class="text-gray-600 hover:text-gray-900">Icons Assets</a></li>
-                              <li><a href="javascript:;" class="text-gray-600 hover:text-gray-900">Responsive Blocks</a>
-                              </li>
-                              <li><a href="javascript:;" class="text-gray-600 hover:text-gray-900">Components Library</a>
-                              </li>
-                          </ul>
-                      </div>
-                      <div class="block">
-                          <h4
-                              class="text-lg text-gray-900 font-medium mb-4 min-[500px]:mb-7 text-center min-[500px]:text-left">
-                              Resources</h4>
-                          <ul class="grid gap-4 min-[500px]:gap-6 text-center min-[500px]:text-left">
-                              <li><a href="javascript:;" class="text-gray-600 hover:text-gray-900">FAQs</a></li>
-                              <li><a href="javascript:;" class="text-gray-600 hover:text-gray-900">Quick Start</a></li>
-                              <li><a href="javascript:;" class="text-gray-600 hover:text-gray-900">Documentation</a></li>
-                              <li><a href="javascript:;" class="text-gray-600 hover:text-gray-900">User Guide</a></li>
-                          </ul>
-                      </div>
-                  </div>
-                  <div class="block lg:max-w-md">
-                      <h3
-                          class="font-manrope font-semibold text-2xl text-gray-900 leading-9 mb-8 text-center lg:text-left">
-                          Join the Realtor and read the new posts first</h3>
-                      <div
-                          class="lg:bg-gray-100 lg:rounded-full lg:h-16 lg:p-1.5 lg:flex-row gap-6 lg:gap-0 flex-col flex items-center justify-between">
-                          <input type="text" name="email"
-                              class="py-1 px-6 bg-gray-100 rounded-full text-gray-900 placeholder:text-gray-500 focus:outline-none flex-1 w-full max-w-xl mx-auto lg:w-auto lg:py-1 lg:px-7 lg:bg-transparent"
-                              placeholder="Your email here..." />
-                          <button type="submit"
-                              class="py-1.5 px-7 bg-indigo-600 shadow-md rounded-full text-white font-semibold hover:bg-indigo-700">Subscribe</button>
-                      </div>
-                  </div>
-              </div>
-              <div class="py-3 border-t border-gray-200">
-                  <div class="flex items-center justify-center flex-col gap-8 lg:gap-0 lg:flex-row lg:justify-between">
-                      <span class="text-sm text-gray-500 ">©<a href="https://pagedone.io/">pagedone</a> 2024, All rights reserved.</span>
-                      <div class="flex mt-4 space-x-4 sm:justify-center sm:mt-0 ">
-                          <a href="javascript:;"
-                              class="w-9 h-9 rounded-full  flex justify-center items-center hover:bg-indigo-600">
-                              <FaGithub className='text-3xl'/>
-
-                          </a>
-                          <a href="javascript:;"
-                              class="w-9 h-9 rounded-full  flex justify-center items-center hover:bg-indigo-600">
-                              <FaLinkedinIn className='text-3xl'/>
-
-                          </a>
-                          <a href="javascript:;"
-                              class="w-9 h-9 rounded-full  flex justify-center items-center hover:bg-indigo-600">
-                              <FaInstagram className='text-3xl'/>
-
-                          </a>
-                          <a href="javascript:;"
-                              class="w-9 h-9 rounded-full  flex justify-center items-center hover:bg-indigo-600">
-                              <FaFacebook className='text-3xl'/>
-
-                          </a>
-                      </div>
-                  </div>
-              </div>
           </div>
-      </footer>
-    )
-  }
+          <a
+            href="javascript:;"
+            className="flex items-center gap-2 py-2.5 px-7 rounded-full bg-gray-900 shadow-md text-white font-semibold hover:bg-gray-800"
+          >
+            Contact Us
+            <svg
+              width="17"
+              height="12"
+              viewBox="0 0 17 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M1.5 6L14.8333 6M10.6667 11L15.0774 6.58926C15.3552 6.31148 15.4941 6.17259 15.4941 6C15.4941 5.82741 15.3552 5.68852 15.0774 5.41074L10.6667 1"
+                stroke="white"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </a>
+        </div>
 
-  export default Footer
+        {/* Main Links Section */}
+        <div className="flex flex-col lg:flex-row py-8 gap-12 lg:gap-24 justify-between">
+          <div className="flex flex-col sm:flex-row gap-12 text-center sm:text-left">
+            <div>
+              <h4 className="text-lg font-medium text-gray-900 mb-4">Real Estate</h4>
+              <ul className="space-y-4">
+                <li>
+                  <Link to="/properties" className="text-gray-600 hover:text-gray-900">
+                    Properties for Sale
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/agents" className="text-gray-600 hover:text-gray-900">
+                    Meet Our Agents
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/about" className="text-gray-600 hover:text-gray-900">
+                    About Us
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/contact" className="text-gray-600 hover:text-gray-900">
+                    Contact Us
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-medium text-gray-900 mb-4">Services</h4>
+              <ul className="space-y-4">
+                <li>
+                  <Link to="/buy" className="text-gray-600 hover:text-gray-900">
+                    Buy a Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/sell" className="text-gray-600 hover:text-gray-900">
+                    Sell a Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/rent" className="text-gray-600 hover:text-gray-900">
+                    Rent a Home
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/mortgages" className="text-gray-600 hover:text-gray-900">
+                    Mortgage Calculator
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            <div>
+              <h4 className="text-lg font-medium text-gray-900 mb-4">Resources</h4>
+              <ul className="space-y-4">
+                <li>
+                  <a href="javascript:;" className="text-gray-600 hover:text-gray-900">
+                    Blog
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:;" className="text-gray-600 hover:text-gray-900">
+                    FAQs
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:;" className="text-gray-600 hover:text-gray-900">
+                    Customer Support
+                  </a>
+                </li>
+                <li>
+                  <a href="javascript:;" className="text-gray-600 hover:text-gray-900">
+                    Careers
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Subscribe Section */}
+          <div className="flex flex-col items-center lg:items-start">
+            <h3 className="font-semibold text-2xl text-gray-900 leading-9 mb-8 text-center lg:text-left">
+              Join EALTOR for the Latest Listings and Tips
+            </h3>
+            <div className="flex items-center gap-6">
+              <input
+                type="email"
+                name="email"
+                className="py-1 px-6 bg-gray-100 rounded-full text-gray-900 placeholder:text-gray-500 focus:outline-none w-full max-w-xl"
+                placeholder="Your email here..."
+              />
+              <button
+                type="submit"
+                className="py-2.5 px-7 bg-indigo-600 shadow-md rounded-full text-white font-semibold hover:bg-indigo-700"
+              >
+                Subscribe
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="py-4 border-t border-gray-200">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-0">
+            <span className="text-sm text-gray-500">
+              ©<a href="https://pagedone.io/">pagedone</a> 2024, All rights reserved.
+            </span>
+            <div className="flex gap-4 sm:gap-6">
+              <a
+                href="javascript:;"
+                className="w-9 h-9 rounded-full flex justify-center items-center hover:bg-indigo-600"
+              >
+                <FaGithub className="text-3xl" />
+              </a>
+              <a
+                href="javascript:;"
+                className="w-9 h-9 rounded-full flex justify-center items-center hover:bg-indigo-600"
+              >
+                <FaLinkedinIn className="text-3xl" />
+              </a>
+              <a
+                href="javascript:;"
+                className="w-9 h-9 rounded-full flex justify-center items-center hover:bg-indigo-600"
+              >
+                <FaInstagram className="text-3xl" />
+              </a>
+              <a
+                href="javascript:;"
+                className="w-9 h-9 rounded-full flex justify-center items-center hover:bg-indigo-600"
+              >
+                <FaFacebook className="text-3xl" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

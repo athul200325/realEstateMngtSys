@@ -1,46 +1,51 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import SERVER_URL from '../services/serverUrl';
 
 
-const ListingItem = () => {
+const ListingItem = ({ name, desc, address, price, image,sell,rent,bathromms,bedrooms }) => {
+  console.log(bedrooms);
+  
+  
   return (
-<div className="card max-w-[333px] bg-white shadow-lg hover:shadow-2xl rounded-xl overflow-hidden transition-transform transform hover:scale-105 duration-300">
+<div className="card h-[450px]  max-w-[333px] bg-white shadow-lg hover:shadow-2xl rounded-xl overflow-hidden transition-transform transform hover:scale-105 duration-300">
   <a href="/listing" className="block">
     {/* Card Image Section */}
     <div className="relative h-[220px] w-full overflow-hidden">
       <img
-        src="https://53.fs1.hubspotusercontent-na1.net/hub/53/hubfs/Sales_Blog/real-estate-business-compressor.jpg?width=595&height=400&name=real-estate-business-compressor.jpg"
-        alt="Modern Apartment"
-        className="w-full h-full object-cover transition-transform transform hover:scale-110 duration-300"
+        src={`${SERVER_URL}/uploads/${image}`}
+        className="w-[330px] h-full object-cover transition-transform transform hover:scale-110 duration-300"
       />
-      <span className="absolute top-4 left-4 bg-indigo-600 text-white text-sm px-3 py-1 rounded-full shadow-lg">
-        For Rent
+      <span className={`absolute top-4 left-4 text-white text-sm px-3 py-1 rounded-full shadow-lg ${
+        sell ? 'bg-green-600' : rent ? 'bg-indigo-600' : 'bg-gray-500'
+      }`}>
+        {sell ? 'For Sale' : rent ? 'For Rent' : 'Unavailable'}
       </span>
     </div>
 
     {/* Card Content Section */}
     <div className="p-6">
       <h3 className="text-xl font-bold text-gray-800 mb-3 truncate">
-        Luxurious Apartment in Downtown
+        {name}
       </h3>
       <p className="text-sm text-gray-500 mb-4 truncate">
-        123 Main St, Downtown
+        {address}
       </p>
-      <p className="text-gray-600 mb-6 line-clamp-3">
-        Discover a contemporary living space with breathtaking views, premium amenities, and a vibrant neighborhood. Perfect for urban enthusiasts!
+      <p className="text-gray-600 h-12 mb-6 line-clamp-3">
+        {desc}
       </p>
 
       {/* Pricing and Details */}
       <div className="flex justify-between items-center">
-        <p className="text-indigo-700 font-bold text-lg">$2,500 / month</p>
+        <p className="text-indigo-700 font-bold text-lg">₹{price}</p>
         <div className="flex gap-4 text-gray-600 text-sm">
           <div className="flex items-center gap-1">
             <span>🛏</span>
-            <span>2 Beds</span>
+            <span>{bedrooms} Beds</span>
           </div>
           <div className="flex items-center gap-1">
             <span>🛁</span>
-            <span>2 Baths</span>
+            <span>{bathromms} Baths</span>
           </div>
         </div>
       </div>
