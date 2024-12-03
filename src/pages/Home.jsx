@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaArrowRight, FaBath, FaBed } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link} from "react-router-dom";
 import ListingItem from "../components/ListingItem";
 import Header from "../components/Header";
 import { getListsAPI } from "../services/allApi";
@@ -10,7 +10,6 @@ import SERVER_URL from "../services/serverUrl";
 import { MdClose } from 'react-icons/md';
 import { FaPhoneAlt } from 'react-icons/fa'; // Import the phone icon from react-icons
 
-import lisling from "../../../realEstate-server/models/listingModel";
 
 const Home = () => {
   const { currentUser } = useSelector((state) => state.user);

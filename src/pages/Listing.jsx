@@ -1,5 +1,4 @@
 import React from 'react'
-import { FaBath, FaBed, FaChair, FaMapMarkerAlt, FaParking, FaShare } from 'react-icons/fa'
 import Header from '../components/Header'
 
 const Listing = () => {
