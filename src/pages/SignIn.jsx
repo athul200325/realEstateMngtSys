@@ -37,7 +37,7 @@ const SignIn = () => {
 
     try {
       dispatch(signInStart());
-      const res = await fetch('/realestate/auth/signin', {
+      const res = await fetch('https://raelestate-server.onrender.com/realestate/auth/signin', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

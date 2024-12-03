@@ -30,7 +30,7 @@ const SignUp = () => {
     }
 
     try {
-      const res = await fetch('/realestate/auth/signup', {
+      const res = await fetch('https://raelestate-server.onrender.com/realestate/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),

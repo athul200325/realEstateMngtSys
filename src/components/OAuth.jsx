@@ -19,7 +19,7 @@ const OAuth = () => {
       const result = await signInWithPopup(auth, provider);
 
       // Send user details to backend for authentication/registration
-      const response = await fetch("/realestate/auth/google", {
+      const response = await fetch("https://raelestate-server.onrender.com/realestate/auth/google", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
