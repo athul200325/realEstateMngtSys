@@ -102,7 +102,7 @@ const Profile = () => {
     // Clear user data from localStorage
     localStorage.removeItem('access_token');
     localStorage.removeItem('user');
-    localStorage.removeItem('persist:root');
+    // localStorage.removeItem('persist:root');
     // Redirect to login page
     navigate('/sign-in');
     window.location.reload();
