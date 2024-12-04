@@ -99,7 +99,8 @@ const Profile = () => {
   };
 
   const handleLogout = () => {
-    localStorage.clear(); // Clear all user data
+    localStorage.clear(); 
+    window.location.reload();
     navigate('/sign-in');
   };
 
