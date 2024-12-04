@@ -99,11 +99,7 @@ const Profile = () => {
   };
 
   const handleLogout = () => {
-    // Clear user data from localStorage
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('user');
-    // localStorage.removeItem('persist:root');
-    // Redirect to login page
+    localStorage.clear(); // Clear all user data
     navigate('/sign-in');
   };
 
