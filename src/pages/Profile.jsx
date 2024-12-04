@@ -105,7 +105,6 @@ const Profile = () => {
     // localStorage.removeItem('persist:root');
     // Redirect to login page
     navigate('/sign-in');
-    window.location.reload();
   };
 
   return (
