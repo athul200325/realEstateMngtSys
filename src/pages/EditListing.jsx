@@ -397,9 +397,6 @@ const EditListing = () => {
             <div>
               <label className="block text-lg font-semibold text-gray-700 mb-2">
                 Images:{" "}
-                <span className="text-sm font-normal text-gray-500">
-                  (First image will be the cover, max 6)
-                </span>
               </label>
               <input
                 onChange={(e) =>
