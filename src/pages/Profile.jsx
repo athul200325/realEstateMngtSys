@@ -25,7 +25,7 @@ const Profile = () => {
 
   useEffect(() => {
     getUserList();
-  }, []);
+  }, [existingProfileImg]);
 
   const getUserList = async () => {
     const token = localStorage.getItem('access_token');
@@ -46,7 +46,7 @@ const Profile = () => {
 
   useEffect(() => {
     setPreview(currentUser?.avatar || '');
-  }, [currentUser]);
+  }, [currentUser,existingProfileImg]);
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -59,7 +59,7 @@ const Profile = () => {
       });
       setExistingProfileImg(parsedUser.avatar || "");
     }
-  }, []);
+  }, [existingProfileImg]);
 
   useEffect(() => {
     if (userDetails.avatar && userDetails.avatar instanceof File) {
