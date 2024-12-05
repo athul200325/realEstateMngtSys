@@ -10,8 +10,6 @@ import SERVER_URL from '../services/serverUrl';
 import profileImg from '../assets/profile.jpg';
 
 const Profile = () => {
-  const [showListings, setShowListings] = useState(false);
-
   const [userLists, setUserLists] = useState([]);
   const [preview, setPreview] = useState("");
   const [existingProfileImg, setExistingProfileImg] = useState("");
@@ -188,33 +186,20 @@ const Profile = () => {
           {/* Listings Section */}
           <div className="px-6 pb-6">
             <h2 className="text-xl font-semibold text-gray-800 mb-4">Your Listings</h2>
-            <button
-              type="button"
-              onClick={() => setShowListings(!showListings)}
-              className="text-indigo-600 flex items-center justify-center mx-auto my-2"
-            >
-              {showListings ? "Hide Listings" : "Show Listings"}
-              <span className={`ml-2 transform transition ${showListings ? "rotate-180" : "rotate-0"}`}>
-                ▼
-              </span>
-            </button>
-            {showListings && (
-              <div
-                className={`overflow-y-auto ${userLists.length > 4 ? "h-48" : ""} border-t border-gray-300 pt-4`}
-              >
-                {userLists?.length > 0 ? (
-                  userLists.map((listing) => (
-                    <Listing
-                      key={listing._id}
+            {
+              userLists?.length > 0 ? (
+                <div>
+                  {userLists?.map((listing) => (
+                    <Listing key={listing._id}
                       listing={listing}
                       getUserList={getUserList}
                     />
-                  ))
-                ) : (
-                  <p className="text-center text-gray-600">No listings found</p>
-                )}
-              </div>
-            )}
+                  ))}
+                </div>
+              ) : (
+                <p className="text-center text-gray-600">No listings found</p>
+              )
+            }
           </div>
           <button type='button' className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 shadow-md transition duration-300">
             <Link to={'/create-listing'}>Add New Listing</Link>
