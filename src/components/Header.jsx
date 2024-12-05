@@ -28,13 +28,17 @@ const Header = ({ insideHome, bgHeader, existingProfileImg }) => {
                 <span className="text-slate-800">EALTOR</span>
               </h1>
             </Link>
-          </div>
-          {insideHome && (
+            {insideHome && (
             <ul className="flex font-semibold gap-4">
-              <div className="mt-2 me-10">
+              <div className="me-10">
                 <Link to={'/'}>
                   <li className="hidden bg-transparent text-black border-1 rounded-md p-2 px-3 ms-8 sm:inline">
                     Home
+                  </li>
+                </Link>
+                <Link to={'/search'}>
+                  <li className="hidden bg-transparent text-black border-1 rounded-md p-2 px-3 ms-8 sm:inline">
+                    Search
                   </li>
                 </Link>
                 <Link to={'/about'}>
@@ -45,6 +49,8 @@ const Header = ({ insideHome, bgHeader, existingProfileImg }) => {
               </div>
             </ul>
           )}
+          </div>
+          
 
           <div className="flex items-center justify-end gap-3">
             {currentUser ? (
