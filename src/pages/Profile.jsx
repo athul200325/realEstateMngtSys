@@ -120,22 +120,28 @@ const Profile = () => {
                 hidden
                 accept="image/*"
               />
-              <label htmlFor="uploadImage" className="cursor-pointer">
-                {
-                  existingProfileImg === "" ?
-                    <img
-                      onClick={() => fileRef.current.click()}
-                      src={preview ? preview : profileImg}
-                      className="h-32 w-32 rounded-full object-cover border-4 border-white shadow-md hover:shadow-lg transition duration-300"
-                    /> :
-                    <img
-                      onClick={() => fileRef.current.click()}
-                      src={preview ? preview : `${SERVER_URL}/uploads/${existingProfileImg}`}
-                      alt="profile"
-                      className="h-32 w-32 rounded-full object-cover border-4 border-white shadow-md hover:shadow-lg transition duration-300"
-                    />
-                }
-              </label>
+                <label htmlFor="uploadImage" className="cursor-pointer">
+                  <input
+                    type="file"
+                    id="uploadImage"
+                    ref={fileRef}
+                    style={{ display: "none" }}
+                    onChange={handleFileChange} // Ensure this function is implemented
+                  />
+                  <img
+                    onClick={() => fileRef.current?.click()}
+                    src={
+                      preview
+                        ? preview
+                        : existingProfileImg
+                        ? `${SERVER_URL}/uploads/${existingProfileImg}`
+                        : profileImg
+                    }
+                    alt="profile"
+                    className="h-32 w-32 rounded-full object-cover border-4 border-white shadow-md hover:shadow-lg transition duration-300"
+                  />
+                </label>
+
             </div>
           </div>
 
