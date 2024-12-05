@@ -61,22 +61,21 @@ const CreateListing = () => {
         }
         // api call
 
-        try{
-          const result=await createListAPI(reqBody,reqHeader)
+        try {
+          const result = await createListAPI(reqBody, reqHeader);
           console.log("API Response:", result);
-          if(result.status ==201){
-            
-            alert('list created successfully')
+          if (result.status === 201) {
+            alert('List created successfully');
             handleClear();
-            navigate('/profile')
-          }else{
-            alert(result.response.data)
+            navigate('/profile');
+          } else {
+            alert(result.response.data);
           }
-
-        }catch(error){
-          console.log(error);
-          
+        } catch (error) {
+          console.log('API call error:', error);
+          alert('Error while creating the listing. Please try again.');
         }
+        
       }else{
         alert("You need to signin first")
         return;

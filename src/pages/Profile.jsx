@@ -77,6 +77,8 @@ const Profile = () => {
       reqBody.append('email', email);
       preview ? reqBody.append("avatar", avatar) : reqBody.append("avatar", existingProfileImg);
       const token = localStorage.getItem('access_token');
+      
+      
       if (token) {
         const reqHeader = {
           "Content-Type": "multipart/form-data",
