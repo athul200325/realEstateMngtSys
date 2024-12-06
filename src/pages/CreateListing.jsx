@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Header from '../components/Header'
 import { createListAPI } from '../services/allApi'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
+
 
 const CreateListing = () => {
   const [preview,setPreview] =useState("")
@@ -33,58 +35,85 @@ const CreateListing = () => {
     setPreview("");
   }
 
-  const handleCreateList= async()=>{
-    const {name,desc,address,options,price,bedrooms,bathrooms,dprice,houselmage,conatctNumber}=houseDetails
-
-    if(name&&desc&&address&&(options.rent||options.sell)&&bedrooms&&bathrooms&&price&&houselmage){
-      // alert("proceed to api")
-      const reqBody=new FormData();
-      reqBody.append("name",name);
-      reqBody.append("desc",desc);
-      reqBody.append("address",address);
-      reqBody.append("rent",options.rent)
-      reqBody.append("sell",options.sell)
-      reqBody.append("parking",options.parking)
-      reqBody.append("furnished",options.furnished)
-      reqBody.append("offer",options.offer)
-      reqBody.append("bedrooms",bedrooms)
-      reqBody.append("bathrooms",bathrooms)
-      reqBody.append("price",price)
-      reqBody.append("dprice",dprice)
-      reqBody.append("houselmage",houselmage)
-      reqBody.append("conatctNumber",conatctNumber)
-      const  token = localStorage.getItem("access_token");
-      if(token){
-        const reqHeader={
-          "Content-Type":"multipart/form-data",
-          "Authorization":`Bearer ${token}`
-        }
-        // api call
-
-        try{
-          const result=await createListAPI(reqBody,reqHeader)
+  const handleCreateList = async () => {
+    const {
+      name,
+      desc,
+      address,
+      options,
+      price,
+      bedrooms,
+      bathrooms,
+      dprice,
+      houselmage,
+      conatctNumber
+    } = houseDetails;
+  
+    // Check if contactNumber is a valid number
+    if (isNaN(conatctNumber)) {
+      toast.error("Contact number must be a valid number");
+      return;
+    }
+  
+    // Check if all required fields are filled
+    if (
+      name &&
+      desc &&
+      address &&
+      (options.rent || options.sell) &&
+      bedrooms &&
+      bathrooms &&
+      price &&
+      houselmage &&
+      conatctNumber
+    ) {
+      const reqBody = new FormData();
+      reqBody.append("name", name);
+      reqBody.append("desc", desc);
+      reqBody.append("address", address);
+      reqBody.append("rent", options.rent);
+      reqBody.append("sell", options.sell);
+      reqBody.append("parking", options.parking);
+      reqBody.append("furnished", options.furnished);
+      reqBody.append("offer", options.offer);
+      reqBody.append("bedrooms", bedrooms);
+      reqBody.append("bathrooms", bathrooms);
+      reqBody.append("price", price);
+      reqBody.append("dprice", dprice);
+      reqBody.append("houselmage", houselmage);
+      reqBody.append("conatctNumber", conatctNumber);
+  
+      const token = localStorage.getItem("access_token");
+  
+      if (token) {
+        const reqHeader = {
+          "Content-Type": "multipart/form-data",
+          Authorization: `Bearer ${token}`
+        };
+  
+        try {
+          const result = await createListAPI(reqBody, reqHeader);
           console.log("API Response:", result);
-          if(result.status ==201){
-            
-            alert('list created successfully')
+  
+          if (result.status === 201) {
+            toast.success("Listing created successfully");
             handleClear();
-            navigate('/profile')
-          }else{
-            alert(result.response.data)
+            navigate("/profile");
+          } else {
+            toast.error(result.response?.data || "Something went wrong");
           }
-
-        }catch(error){
-          console.log(error);
-          
+        } catch (error) {
+          console.error(error);
+          toast.error("Failed to create listing. Please try again later.");
         }
-      }else{
-        alert("You need to signin first")
+      } else {
+        toast.warn("You need to sign in first");
         return;
       }
-    }else{
-      alert("Please fill all required fields")
+    } else {
+      toast.error("Please fill all required fields");
     }
-  }
+  };
 
   return (
     <>
