@@ -8,6 +8,9 @@ import SERVER_URL from '../services/serverUrl';
 const Header = ({ insideHome, bgHeader, existingProfileImg }) => {
   const { currentUser } = useSelector((state) => state.user);
 
+  console.log(existingProfileImg);
+  
+
   // Determine the profile image to display
   const profileImage = existingProfileImg
     ? `${SERVER_URL}/uploads/${existingProfileImg}`

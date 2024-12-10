@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
-import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import Listing from '../components/Listing';
@@ -8,6 +7,8 @@ import { getUserListsAPI, updateUserProflieAPI } from '../services/allApi';
 import { Link } from 'react-router-dom';
 import SERVER_URL from '../services/serverUrl';
 import profileImg from '../assets/profile.jpg';
+import { toast } from 'react-toastify'; // Import toast
+import 'react-toastify/dist/ReactToastify.css'; // Import toast styles
 
 const Profile = () => {
   const [userLists, setUserLists] = useState([]);
@@ -46,7 +47,7 @@ const Profile = () => {
 
   useEffect(() => {
     setPreview(currentUser?.avatar || '');
-  }, [currentUser,existingProfileImg]);
+  }, [currentUser, existingProfileImg]);
 
   useEffect(() => {
     const user = localStorage.getItem("user");
@@ -69,6 +70,13 @@ const Profile = () => {
     }
   }, [userDetails.avatar]);
 
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setUserDetails({ ...userDetails, avatar: file });
+    }
+  };
+
   const handleUpdateProfile = async () => {
     const { username, email, avatar } = userDetails;
     if (username || email) {
@@ -78,7 +86,6 @@ const Profile = () => {
       preview ? reqBody.append("avatar", avatar) : reqBody.append("avatar", existingProfileImg);
       const token = localStorage.getItem('access_token');
       
-      
       if (token) {
         const reqHeader = {
           "Content-Type": "multipart/form-data",
@@ -87,14 +94,18 @@ const Profile = () => {
         try {
           const result = await updateUserProflieAPI(reqBody, reqHeader);
           if (result.status === 200) {
-            alert("Profile updated successfully");
+             // Display toast on success
             localStorage.setItem("user", JSON.stringify(result.data));
             setUserDetails(result.data);
+            window.location.reload();
+            toast.success("Profile updated successfully!");
           } else {
+            toast.error("Failed to update profile!"); // Display toast on failure
             console.log(result);
           }
         } catch (err) {
           console.log(err);
+          toast.error("An error occurred while updating your profile!"); // Toast for error
         }
       }
     }
@@ -104,6 +115,7 @@ const Profile = () => {
     localStorage.clear(); 
     window.location.reload();
     navigate('/sign-in');
+    toast.info("You have logged out successfully!"); // Toast for logout
   };
 
   return (
@@ -115,35 +127,21 @@ const Profile = () => {
           <div className="relative bg-gradient-to-r from-indigo-500 to-indigo-700 h-32">
             <div className="absolute -bottom-16 left-1/2 transform -translate-x-1/2">
               <input
-                onChange={e => setUserDetails({ ...userDetails, avatar: e.target.files[0] })}
+                onChange={handleFileChange}
                 type="file"
                 ref={fileRef}
                 id="uploadImage"
                 hidden
                 accept="image/*"
               />
-                <label htmlFor="uploadImage" className="cursor-pointer">
-                  <input
-                    type="file"
-                    id="uploadImage"
-                    ref={fileRef}
-                    style={{ display: "none" }}
-                    onChange={handleFileChange} // Ensure this function is implemented
-                  />
-                  <img
-                    onClick={() => fileRef.current?.click()}
-                    src={
-                      preview
-                        ? preview
-                        : existingProfileImg
-                        ? `${SERVER_URL}/uploads/${existingProfileImg}`
-                        : profileImg
-                    }
-                    alt="profile"
-                    className="h-32 w-32 rounded-full object-cover border-4 border-white shadow-md hover:shadow-lg transition duration-300"
-                  />
-                </label>
-
+              <label htmlFor="uploadImage" className="cursor-pointer">
+                <img
+                  onClick={() => fileRef.current?.click()}
+                  src={preview ? preview : existingProfileImg ? `${SERVER_URL}/uploads/${existingProfileImg}` : profileImg}
+                  alt="profile"
+                  className="h-32 w-32 rounded-full object-cover border-4 border-white shadow-md hover:shadow-lg transition duration-300"
+                />
+              </label>
             </div>
           </div>
 
@@ -208,6 +206,9 @@ const Profile = () => {
           </button>
         </div>
       </div>
+
+      {/* Toast Container */}
+
     </>
   );
 };

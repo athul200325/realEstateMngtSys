@@ -3,6 +3,8 @@ import Header from "../components/Header";
 import { useLocation, useNavigate } from "react-router-dom";
 import SERVER_URL from "../services/serverUrl";
 import { updateListsAPI } from "../services/allApi";
+import { toast } from 'react-toastify';
+
 
 const EditListing = () => {
   const location = useLocation();
@@ -97,18 +99,18 @@ const EditListing = () => {
           try{
             const result=await updateListsAPI(id,reqBody,reqHeader)
             if(result.status===200){
-                alert("Listing updated successfully")
+              toast.success("Listing updated successfully");
                 handleClear()
                 navigate('/profile')
             }
           }catch(err){
             console.log(err)
-            alert("Failed to edit listing. Please try again later.")
+            toast.error("Failed to edit listing. Please try again later.")
           }
       }
 
     }else{
-        alert("Please fill all required fields")
+        toast.warning("Please fill all required fields")
     }
     }
 

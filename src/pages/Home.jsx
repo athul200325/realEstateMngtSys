@@ -100,7 +100,7 @@ const Home = () => {
                 bathrooms={listing.bathrooms}
                 price={listing.price}
                 image={listing.houseImage}
-                contactNumber={listing.contactNumber}
+                conatctNumber={listing.conatctNumber}
               />
             </div>
           ))}
@@ -212,11 +212,11 @@ const Home = () => {
 
           {/* Contact Landlord Button */}
           <button
-            onClick={() => window.location.href = `tel:${selectedListing.contactNumber}`}
+            onClick={() => window.location.href = `tel:${selectedListing.conatctNumber}`}
             className="flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-full font-medium shadow-lg hover:bg-indigo-700 transition-transform duration-300 transform hover:scale-105"
           >
             <FaPhoneAlt className="text-lg" />
-            <span>Contact Landlord: {selectedListing.contactNumber}</span>
+            <span>Contact Landlord: {selectedListing.conatctNumber}</span>
           </button>
         </div>
       </div>
